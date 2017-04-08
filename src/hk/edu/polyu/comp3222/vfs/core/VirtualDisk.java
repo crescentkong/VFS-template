@@ -73,9 +73,9 @@ public class VirtualDisk {
                 (new List()).ope();
             }
 
-//            if (command.equals("Search")) {
-//                (new Searching()).ope();
-//            }
+           if (command.equals("Search")) {
+                (new Searching()).ope();
+            }
 
             if (command.equals("CheckSize")) {
                 (new CheckSize()).ope();
@@ -99,6 +99,26 @@ public class VirtualDisk {
 
             if (command.equals("ExportFile")) {
                 (new ExportFile()).ope();
+            }
+
+            if (command.equals("RenameDir")) {
+                (new RenameDir()).ope();
+            }
+
+            if (command.equals("CopyDir")) {
+                (new CopyDir()).ope();
+            }
+
+            if (command.equals("MoveDir")) {
+                (new MoveDir()).ope();
+            }
+
+            if (command.equals("ImportDir")) {
+                (new ImportDir()).ope();
+            }
+
+            if (command.equals("ExportDir")) {
+                (new ExportDir()).ope();
             }
         }
     }
