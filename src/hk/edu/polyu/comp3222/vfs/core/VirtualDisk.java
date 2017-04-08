@@ -1,5 +1,7 @@
 package hk.edu.polyu.comp3222.vfs.core;
 
+import hk.edu.polyu.comp3222.vfs.client.command.CreateCommand;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
@@ -16,5 +18,15 @@ public class VirtualDisk {
 
         /* We want to read an existing ZIP File, so we set this to False */
         attributes.put("create", "true");
+
+        String command = "Create";
+
+        BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter the command you want to execute: ");
+        command = keyRead.readLine();
+        System.out.println(command);
+        if (command.equals("Create")) {
+            new CreateCommand();
+        }
     }
 }
