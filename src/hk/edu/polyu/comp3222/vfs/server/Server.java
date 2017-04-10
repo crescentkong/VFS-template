@@ -10,6 +10,7 @@ import java.net.Socket;
 /**
  * Created by Fiona on 4/8/2017.
  */
+@SuppressWarnings("ALL")
 public class Server {
     static ServerSocket hostSocket;
 

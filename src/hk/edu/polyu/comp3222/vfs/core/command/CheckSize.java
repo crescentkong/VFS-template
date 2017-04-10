@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.zip.ZipInputStream;
 
+@SuppressWarnings("ALL")
 public class CheckSize extends FunctionManager {
 
     public static String reply;

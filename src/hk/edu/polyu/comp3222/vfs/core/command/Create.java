@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.*;
 
+@SuppressWarnings("ALL")
 public class Create extends FunctionManager {
 
     public static String reply;

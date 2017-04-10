@@ -9,6 +9,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+@SuppressWarnings("ALL")
 public class ImportDir extends DirManager {
 
     public static String reply;
@@ -17,6 +18,7 @@ public class ImportDir extends DirManager {
         super();
     }
 
+    @Override
     public void ope() throws IOException {
     }
 

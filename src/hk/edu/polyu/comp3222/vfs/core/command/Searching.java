@@ -2,7 +2,6 @@ package hk.edu.polyu.comp3222.vfs.core.command;
 import hk.edu.polyu.comp3222.vfs.core.FunctionManager;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -118,9 +117,6 @@ public class Searching extends FunctionManager {
                                         " at " + ar.get(i);
                             }
                             walk.file_found_flag = true;
-                            //}
-                            //}
-                            //}
                         }
                     }
                 }

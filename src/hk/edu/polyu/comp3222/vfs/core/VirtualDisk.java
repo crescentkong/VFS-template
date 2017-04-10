@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 public class VirtualDisk {
     public static String tempCaseSensitive = "1";
     public static String tempMatchAllKeywords = "1";
@@ -46,7 +47,7 @@ public class VirtualDisk {
         try {
             String[] list = input.split(delimiter);
             return list[searchNum - 1];
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
 
         }
         return "Success";

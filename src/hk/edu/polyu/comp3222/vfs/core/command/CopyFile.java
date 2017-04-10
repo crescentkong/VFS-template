@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import hk.edu.polyu.comp3222.vfs.core.FileManager;
 
+@SuppressWarnings("ALL")
 public class CopyFile extends FileManager {
 
     public static String reply;

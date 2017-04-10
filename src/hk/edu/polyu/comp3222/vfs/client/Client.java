@@ -1,16 +1,14 @@
 package hk.edu.polyu.comp3222.vfs.client;
 
-import hk.edu.polyu.comp3222.vfs.core.VirtualDisk;
-import hk.edu.polyu.comp3222.vfs.core.command.*;
 import hk.edu.polyu.comp3222.vfs.server.Server;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
  * Created by Fiona on 4/8/2017.
  */
+@SuppressWarnings("ALL")
 public class Client {
 
     private static Socket socket;

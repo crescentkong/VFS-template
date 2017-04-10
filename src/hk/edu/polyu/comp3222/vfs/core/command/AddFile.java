@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.*;
 
+@SuppressWarnings("ALL")
 public class AddFile extends FileManager {
 
     public static String reply;

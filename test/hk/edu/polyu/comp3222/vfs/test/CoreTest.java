@@ -15,9 +15,6 @@ public class CoreTest {
 
     @Test
     public void testMain() throws Exception {
-        Core core = new Core();
-        core.main(new String[] {"Create"});
-      //  YourClass.main(new String[] {"arg1", "arg2", "arg3"});
     }
 
 //

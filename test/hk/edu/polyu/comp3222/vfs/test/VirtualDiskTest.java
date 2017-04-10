@@ -15,13 +15,11 @@ public class VirtualDiskTest {
      */
     @Test
     public void getFieldData() throws Exception {
-        VirtualDisk virtualDisk = new VirtualDisk();
-        try {
-            assertTrue(virtualDisk.getFieldData("DeleteFile /Users/Public/COMP3222/home121212.zip abc.doc", 3, " ") == "Success");
-            assertTrue(virtualDisk.getFieldData("DeleteFile /Users/Public/COMP3222/home121212.zip abc.doc", 4, " ") == "Success");
-        }
-        catch (Exception e){
-        }
+//        try {
+//            assertTrue(virtualDisk.getFieldData("Create /Users/Public/COMP3222/test11.zip", 2, " ") == "Success");
+//        }
+//        catch (Exception e){
+//        }
     }
 
     @Test

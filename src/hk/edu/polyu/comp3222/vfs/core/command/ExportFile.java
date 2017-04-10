@@ -8,6 +8,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+@SuppressWarnings("ALL")
 public class ExportFile extends FileManager {
 
     public static String reply;

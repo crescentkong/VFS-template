@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
+@SuppressWarnings("ALL")
 public class ManageAccount {
     public static final HashMap<String, Account> accounts = new HashMap<String, Account>();
     protected static Account currentAccount = null;

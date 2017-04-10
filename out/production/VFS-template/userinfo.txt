@@ -6,9 +6,5 @@ happy
 happy
 kong
 kong
-New
-user
-admin
-hi
 CreateAcc
 new

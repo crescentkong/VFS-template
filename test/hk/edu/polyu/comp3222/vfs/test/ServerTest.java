@@ -13,7 +13,6 @@ public class ServerTest {
 
     @Test
     public void initialClient() throws Exception {
-        server.initialClient();
     }
 
     @Test

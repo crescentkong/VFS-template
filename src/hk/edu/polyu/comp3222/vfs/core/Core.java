@@ -9,6 +9,7 @@ import java.net.Socket;
 /**
  *
  */
+@SuppressWarnings("ALL")
 public class Core {
 
     private static Socket socket;

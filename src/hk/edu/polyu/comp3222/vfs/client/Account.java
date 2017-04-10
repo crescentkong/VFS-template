@@ -1,5 +1,6 @@
 package hk.edu.polyu.comp3222.vfs.client;
 
+@SuppressWarnings("ALL")
 public class Account {
     private String id;
     private String pw;
