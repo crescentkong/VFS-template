@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class ManageAccount {
+public class AccountActivity {
     public static final HashMap<String, Account> accounts = new HashMap<String, Account>();
     protected static Account currentAccount = null;
     // hard coded rooms and accounts

@@ -3,6 +3,9 @@ package hk.edu.polyu.comp3222.vfs.test;
 import hk.edu.polyu.comp3222.vfs.core.command.Searching;
 import org.junit.Test;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.junit.Assert.*;
 
 /**

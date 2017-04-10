@@ -47,9 +47,7 @@ public class VirtualDisk {
         try {
             String[] list = input.split(delimiter);
             return list[searchNum - 1];
-        } catch (Exception ignored) {
-
-        }
+        } catch (Exception e) {}
         return "Success";
     }
 

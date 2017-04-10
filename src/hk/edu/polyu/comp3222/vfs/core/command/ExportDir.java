@@ -1,5 +1,5 @@
 package hk.edu.polyu.comp3222.vfs.core.command;
-import hk.edu.polyu.comp3222.vfs.core.DirManager;
+import hk.edu.polyu.comp3222.vfs.core.DirCommand;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @SuppressWarnings("ALL")
-public class ExportDir extends DirManager {
+public class ExportDir extends DirCommand {
 
     public static String reply;
 

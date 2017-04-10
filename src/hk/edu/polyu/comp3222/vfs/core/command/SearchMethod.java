@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  */
 @SuppressWarnings("ALL")
-public class Search implements FileVisitor {
+public class SearchMethod implements FileVisitor {
     /* This flag holds the Path to the searched file */
 
     public static String reply;
@@ -16,7 +16,7 @@ public class Search implements FileVisitor {
     /* This flag is set to true if the file is found */
     public boolean file_found_flag;
 
-    public Search(Path searchedFile) {
+    public SearchMethod(Path searchedFile) {
         this.searchedFile = searchedFile;
         this.file_found_flag = false;
     }

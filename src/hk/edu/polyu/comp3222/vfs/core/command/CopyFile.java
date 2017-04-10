@@ -5,10 +5,10 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import hk.edu.polyu.comp3222.vfs.core.FileManager;
+import hk.edu.polyu.comp3222.vfs.core.FileCommand;
 
 @SuppressWarnings("ALL")
-public class CopyFile extends FileManager {
+public class CopyFile extends FileCommand {
 
     public static String reply;
 

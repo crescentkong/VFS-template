@@ -1,5 +1,5 @@
 package hk.edu.polyu.comp3222.vfs.core.command;
-import hk.edu.polyu.comp3222.vfs.core.FileManager;
+import hk.edu.polyu.comp3222.vfs.core.FileCommand;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @SuppressWarnings("ALL")
-public class ExportFile extends FileManager {
+public class ExportFile extends FileCommand {
 
     public static String reply;
 

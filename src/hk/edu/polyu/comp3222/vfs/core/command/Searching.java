@@ -1,5 +1,5 @@
 package hk.edu.polyu.comp3222.vfs.core.command;
-import hk.edu.polyu.comp3222.vfs.core.FunctionManager;
+import hk.edu.polyu.comp3222.vfs.core.VDCommand;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.*;
@@ -12,7 +12,7 @@ import java.util.zip.ZipFile;
  * Created by Fiona on 4/8/2017.
  */
 @SuppressWarnings("ALL")
-public class Searching extends FunctionManager {
+public class Searching extends VDCommand {
 
     public static String reply;
 
@@ -48,7 +48,7 @@ public class Searching extends FunctionManager {
 
         //Path searchFile = Paths.get("a.doc");
         Path searchFile = Paths.get(tempSearchWord);
-        Search walk = new Search(searchFile);
+        SearchMethod walk = new SearchMethod(searchFile);
 
         ZipFile zipFile = new ZipFile(a);
 

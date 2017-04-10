@@ -1,10 +1,10 @@
 package hk.edu.polyu.comp3222.vfs.core.command;
-import hk.edu.polyu.comp3222.vfs.core.FunctionManager;
+import hk.edu.polyu.comp3222.vfs.core.VDCommand;
 import java.io.File;
 import java.io.IOException;
 
 @SuppressWarnings("ALL")
-public class DeleteVD extends FunctionManager {
+public class DeleteVD extends VDCommand {
 
     public static String reply;
 

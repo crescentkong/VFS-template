@@ -1,11 +1,11 @@
 package hk.edu.polyu.comp3222.vfs.core.command;
-import hk.edu.polyu.comp3222.vfs.core.FunctionManager;
+import hk.edu.polyu.comp3222.vfs.core.VDCommand;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.*;
 
 @SuppressWarnings("ALL")
-public class Create extends FunctionManager {
+public class Create extends VDCommand {
 
     public static String reply;
 

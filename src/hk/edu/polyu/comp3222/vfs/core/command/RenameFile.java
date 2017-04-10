@@ -1,5 +1,5 @@
 package hk.edu.polyu.comp3222.vfs.core.command;
-import hk.edu.polyu.comp3222.vfs.core.FileManager;
+import hk.edu.polyu.comp3222.vfs.core.FileCommand;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
@@ -8,7 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @SuppressWarnings("ALL")
-public class RenameFile extends FileManager {
+public class RenameFile extends FileCommand {
 
     public static String reply;
 

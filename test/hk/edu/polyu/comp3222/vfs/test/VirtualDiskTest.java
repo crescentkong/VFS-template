@@ -15,7 +15,7 @@ public class VirtualDiskTest {
      */
     @Test
     public void getFieldData() throws Exception {
-//        try {
+//       try {
 //            assertTrue(virtualDisk.getFieldData("Create /Users/Public/COMP3222/test11.zip", 2, " ") == "Success");
 //        }
 //        catch (Exception e){

@@ -1,5 +1,5 @@
 package hk.edu.polyu.comp3222.vfs.core.command;
-import hk.edu.polyu.comp3222.vfs.core.FunctionManager;
+import hk.edu.polyu.comp3222.vfs.core.VDCommand;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.zip.ZipInputStream;
 
 @SuppressWarnings("ALL")
-public class CheckSize extends FunctionManager {
+public class CheckSize extends VDCommand {
 
     public static String reply;
     final double kb = 1024.0;

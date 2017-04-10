@@ -1,7 +1,7 @@
 package hk.edu.polyu.comp3222.vfs.server;
 
 import hk.edu.polyu.comp3222.vfs.client.Account;
-import hk.edu.polyu.comp3222.vfs.client.ManageAccount;
+import hk.edu.polyu.comp3222.vfs.client.AccountActivity;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -61,14 +61,14 @@ public class Server {
                 String id = receiveRead.readLine();
                 String pw = " ";
                 ac = new Account(id, pw);
-                if (ManageAccount.checkExist(ac)) {
+                if (AccountActivity.checkExist(ac)) {
                     pwrite.println("Username is used! Please Try Again Later.");
                     System.exit(0);
                 } else {
                     pwrite.println("Enter your password! ");
                     pw = receiveRead.readLine();
                     ac = new Account(id, pw);
-                    ManageAccount.createAcc(ac);
+                    AccountActivity.createAcc(ac);
                     pwrite.println("Account is created! You can now continue to access the system. Please Enter the command!");
                     wrongInput = "false";
                     login = "true";
@@ -81,7 +81,7 @@ public class Server {
                 pwrite.println("Enter your password! ");
                 String pw = receiveRead.readLine();
                 ac = new Account(id, pw);
-                if (ManageAccount.login(ac)) {
+                if (AccountActivity.login(ac)) {
                     pwrite.println("Login successfully! Please Enter the command!");
                     wrongInput = "false";
                     login = "true";

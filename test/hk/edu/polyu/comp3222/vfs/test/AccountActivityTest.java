@@ -1,7 +1,7 @@
 package hk.edu.polyu.comp3222.vfs.test;
 
 import hk.edu.polyu.comp3222.vfs.client.Account;
-import hk.edu.polyu.comp3222.vfs.client.ManageAccount;
+import hk.edu.polyu.comp3222.vfs.client.AccountActivity;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 /**
  * Created by Crescent Kong on 10-Apr-17.
  */
-public class ManageAccountTest {
-    ManageAccount m = new ManageAccount();
+public class AccountActivityTest {
+    AccountActivity m = new AccountActivity();
 
     @Test
     public void getAccount() throws Exception {
@@ -28,7 +28,7 @@ public class ManageAccountTest {
 
     @Test
     public void createAcc() throws Exception {
-            assertTrue(m.createAcc(new Account("CreateAcc", "new")) == "Success");
+            assertTrue(m.createAcc(new Account("admin", "admin")) == "Success");
     }
 
     @Test

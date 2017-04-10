@@ -2,9 +2,9 @@ package hk.edu.polyu.comp3222.vfs.core;
 import java.io.IOException;
 
 @SuppressWarnings("ALL")
-public abstract class FileManager extends VirtualDisk {
+public abstract class DirCommand extends VirtualDisk implements Command{
 
-    public FileManager(){
+    public DirCommand(){
         super();
     }
 

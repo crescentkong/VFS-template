@@ -2,9 +2,9 @@ package hk.edu.polyu.comp3222.vfs.core;
 import java.io.IOException;
 
 @SuppressWarnings("ALL")
-public abstract class FunctionManager extends VirtualDisk {
+public abstract class VDCommand extends VirtualDisk implements Command{
 
-    public FunctionManager(){
+    public VDCommand(){
         super();
     }
 

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.Ignore;
 
 import java.io.*;
+import java.io.File;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -12,7 +13,6 @@ import static hk.edu.polyu.comp3222.vfs.core.VirtualDisk.VirDiskPath;
 import static org.junit.Assert.*;
 
 public class CoreTest {
-
     @Test
     public void testMain() throws Exception {
     }
