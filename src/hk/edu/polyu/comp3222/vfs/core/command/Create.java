@@ -6,16 +6,21 @@ import java.nio.file.*;
 
 public class Create extends FunctionManager {
 
+    public static String reply;
+
     public Create(){
         super();
     }
 
     @Override
     public void ope() throws IOException{
-        VirDiskPath = read_path();
-        /* Specify the path to the ZIP File that you want to read as a File System */
-        //URI zipFile = URI.create("jar:file:/home.zip");
-        //URI zipFile = URI.create("jar:file:/Users/Public/COMP3222/home2.zip");
+    }
+
+    public String ope(String parameter) throws IOException{
+        System.out.print("para"+ parameter);
+        //String b = getFieldData(parameter,2," ");
+        VirDiskPath = "jar:file:" + parameter;
+
         URI zipFile = URI.create(VirDiskPath);
         try (FileSystem zipFileSys = FileSystems.newFileSystem(zipFile, attributes);) {
             try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(zipFileSys.getPath("/"));) {
@@ -25,6 +30,11 @@ public class Create extends FunctionManager {
                 //ZipOutputStream emptyzip = new ZipOutputStream(new FileOutputStream(new FileOutputStream(tempVirDiskPath)));
                 //emptyzip.close();
             }
+            reply = parameter + " Successfully Created";
         }
+        catch (Exception e){
+            reply = "Please Try Again";
+        }
+    return "Success";
     }
 }

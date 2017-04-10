@@ -9,23 +9,40 @@ import hk.edu.polyu.comp3222.vfs.core.FileManager;
 
 public class CopyFile extends FileManager {
 
+    public static String reply;
+
     public CopyFile(){
         super();
     }
 
     @Override
     public void ope() throws IOException {
-        VirDiskPath = read_path();
+    }
+
+    public String ope(String parameter) throws IOException {
+
+        System.out.println("para:"+ parameter);
+        String a = getFieldData(parameter,1," ");
+        System.out.println("a:"+ a);
+        String b = getFieldData(parameter,2," ");
+        System.out.println("b:"+ b);
+        String c = getFieldData(parameter,3," ");
+        System.out.println("c:"+ c);
+        VirDiskPath = "jar:file:" + a;
+        tempDeleteFile = b;
+        tempAddNewFile = c;
         URI zipFile = URI.create(VirDiskPath);
 
-        try (FileSystem zipFileSys = FileSystems.newFileSystem(zipFile, attributes);) {
-            System.out.println("Enter the path of the File to be copied: (e.g. happy.doc)");
-            tempDeleteFile = keyRead.readLine(); //happy.doc
+        try (FileSystem zipFileSys = FileSystems.newFileSystem(zipFile, attributes)) {
+            //System.out.println("Enter the path of the File to be copied: (e.g. happy.doc)");
+            //tempDeleteFile = keyRead.readLine(); //happy.doc
             Path ZipFilePath = zipFileSys.getPath(tempDeleteFile);
-            System.out.println("Enter the path of the copied File: (e.g. happy2.doc OR asas/happy.doc)");
-            tempAddNewFile = keyRead.readLine(); //happy2.doc OR asas/happy.doc
+            //System.out.println("Enter the path of the copied File: (e.g. happy2.doc OR asas/happy.doc)");
+            //tempDeleteFile = keyRead.readLine(); //happy2.doc OR asas/happy.doc
             Path ZipFilePath1 = zipFileSys.getPath(tempAddNewFile);
             Files.copy(ZipFilePath, ZipFilePath1);
+            reply = tempDeleteFile + " Successfully Copied";
         }
+        return "Success";
     }
 }

@@ -12,7 +12,10 @@ import java.util.zip.ZipFile;
 /**
  * Created by Fiona on 4/8/2017.
  */
+@SuppressWarnings("ALL")
 public class Searching extends FunctionManager {
+
+    public static String reply;
 
     public Searching(){
         super();
@@ -20,46 +23,56 @@ public class Searching extends FunctionManager {
 
     @Override
     public void ope() throws IOException {
-        System.out.println("Search File or Folder?");
-        tempSearchFileFolder = keyRead.readLine();
+    }
 
-        System.out.println("Enter the file/folder you want to Search: ");
-        tempSearchWord = keyRead.readLine();
+    public String ope(String parameter) throws IOException {
 
-        System.out.println("1- Case Sensitive; 2- Insensitive");
-        tempCaseSensitive = keyRead.readLine();
+        System.out.println("para:"+ parameter);
+        String a = getFieldData(parameter,1," ");
+        System.out.println("a:"+ a);
+        String b = getFieldData(parameter,2," ");
+        System.out.println("b:"+ b);
+        String c = getFieldData(parameter,3," ");
+        System.out.println("c:"+ c);
+        String d = getFieldData(parameter,4," ");
+        System.out.println("d:"+ d);
+        String e = getFieldData(parameter,5," ");
+        System.out.println("e:"+ e);
 
-        System.out.println("3- Match All Keywords; 4- Match Any Keywords");
-        tempMatchAllKeywords = keyRead.readLine();
 
-        System.out.println("Enter the path: ");
-        tempSearchPath = keyRead.readLine();
-        searchPath = "jar:file:" + tempSearchPath;
+        searchPath = "jar:file:" + a;
         System.out.println(searchPath);
-
+        tempSearchFileFolder = b;
+        tempSearchWord =  c;
+        tempCaseSensitive = d;
+        tempMatchAllKeywords = e;
 
         //Path searchFile = Paths.get("a.doc");
         Path searchFile = Paths.get(tempSearchWord);
         Search walk = new Search(searchFile);
 
-        ZipFile zipFile = new ZipFile(tempSearchPath);
+        ZipFile zipFile = new ZipFile(a);
 
         Enumeration<? extends ZipEntry> entries = zipFile.entries();
 
+        reply = "";
+        int matchNo = 0;
+
         ArrayList<String> ar = new ArrayList<String>();
+
+        ArrayList<String> arFile = new ArrayList<String>();
 
         while(entries.hasMoreElements()) {
 
             ZipEntry entry = entries.nextElement();
             tempEntry = entry.toString();
             if (tempEntry.matches("(.*)" + ("/") )){
-                //System.out.println("q");
                 ar.add(tempEntry);
             }
+            if (!tempEntry.matches("(.*)" + ("/") )){
+                arFile.add(tempEntry);
+            }
 
-            //for (String ent : ar) {
-            //System.out.println(ent);
-            //}
 
             InputStream stream = zipFile.getInputStream(entry);
 
@@ -69,23 +82,41 @@ public class Searching extends FunctionManager {
             //for (String ent : ar) {
             for (int i = 0; i < ar.size(); i++) {
 
-                if (tempCaseSensitive.equals("1")) {
-                    if (tempMatchAllKeywords.equals("3")) {
-                        if (ar.get(i).equals(tempSearchWord + "/")) {
+                if (tempCaseSensitive.equals("CaseSensitive")) {
+                    if (tempMatchAllKeywords.equals("MatchAll")) {
+                        if (ar.get(i).equals(tempSearchWord + "/")||(ar.get(i).matches("(.*)" + "(/)" + tempSearchWord+ "(/)"))) {
+                            matchNo = matchNo +1;
                             System.out.println("ZIP File Contains " + searchFile +
                                     " at " + ar.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
                             walk.file_found_flag = true;
                         }
 
                     }
 
-                    if (tempMatchAllKeywords.equals("4")) {
+                    if (tempMatchAllKeywords.equals("MatchAny")) {
                         if (ar.get(i).matches("(.*)" + tempSearchWord + "(.*)" + "(/)")) {
                             //if (i > 0) {
                             //for (int j = 0; j < (ar.size() - 1); j++) {
                             //if (!ar.get(i).matches(ar.get(j) + "(.*)")) {
+                            matchNo = matchNo +1;
                             System.out.println("ZIP File Contains " + searchFile +
                                     " at " + ar.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
                             walk.file_found_flag = true;
                             //}
                             //}
@@ -94,43 +125,141 @@ public class Searching extends FunctionManager {
                     }
                 }
 
-                if (tempCaseSensitive.equals("2")) {
-                    if (tempMatchAllKeywords.equals("3")) {
-                        if (ar.get(i).toLowerCase().matches((tempSearchWord + "/").toLowerCase())) {
+                if (tempCaseSensitive.equals("CaseInsensitive")) {
+                    if (tempMatchAllKeywords.equals("MatchAll")) {
+                        if (ar.get(i).toLowerCase().matches((tempSearchWord + "/").toLowerCase())||(ar.get(i).matches(("(.*)" + "(/)" + tempSearchWord+ "(/)").toLowerCase()))) {
+
+                           // if (ar.get(i).equals(tempSearchWord + "/")||(ar.get(i).matches("(.*)" + "(/)" + tempSearchWord+ "(/)")))
+
+                            matchNo = matchNo +1;
                             System.out.println("ZIP File Contains " + searchFile +
                                     " at " + ar.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
                             walk.file_found_flag = true;
                         }
 
 
                     }
-                    if (tempMatchAllKeywords.equals("4")) {
+                    if (tempMatchAllKeywords.equals("MatchAny")) {
                         if (ar.get(i).toLowerCase().matches("(.*)".toLowerCase() + tempSearchWord.toLowerCase() + "(.*)".toLowerCase() + "(/)")) {
+                            matchNo = matchNo +1;
                             System.out.println("ZIP File Contains " + searchFile +
                                     " at " + ar.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + ar.get(i);
+                            }
                             walk.file_found_flag = true;
                         }
                     }
                 }
-
+            }
+            if (matchNo == 0){
+                reply = "ZIP File does not contain " + searchFile;;
             }
         }
 
-            /* Define ZIP File System Properies in HashMap */
-        //URI zip_disk = URI.create("jar:file:/Users/Public/COMP3222/home2.zip");
-        URI zip_disk = URI.create(searchPath);
-        FileSystem zipfs = FileSystems.newFileSystem(zip_disk, attributes);
 
-        Iterable<Path> dirs = zipfs.getRootDirectories();
+        if (tempSearchFileFolder.equals("File")) {
+//            for (String entFile : arFile)
+//                System.out.println(entFile);
+            for (int i = 0; i < arFile.size(); i++) {
 
-        for (Path root : dirs) {
-            if (!walk.file_found_flag) {
-                Files.walkFileTree(root, walk);
+                if (tempCaseSensitive.equals("CaseSensitive")) {
+                    if (tempMatchAllKeywords.equals("MatchAll")) {
+                        if ((arFile.get(i).equals(tempSearchWord))||(arFile.get(i).matches("(.*)" + "(/)" + tempSearchWord))){
+                            matchNo = matchNo +1;
+                            System.out.println("ZIP File Contains " + searchFile +
+                                    " at " + arFile.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            walk.file_found_flag = true;
+                        }
+
+                    }
+
+                    if (tempMatchAllKeywords.equals("MatchAny")) {
+                        if (arFile.get(i).matches("(.*)" + tempSearchWord + "(.*)" )) {
+                            //if (i > 0) {
+                            //for (int j = 0; j < (ar.size() - 1); j++) {
+                            //if (!ar.get(i).matches(ar.get(j) + "(.*)")) {
+                            matchNo = matchNo +1;
+                            System.out.println("ZIP File Contains " + searchFile +
+                                    " at " + arFile.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            walk.file_found_flag = true;
+                            //}
+                            //}
+                            //}
+                        }
+                    }
+                }
+
+                if (tempCaseSensitive.equals("CaseInsensitive")) {
+                    if (tempMatchAllKeywords.equals("MatchAll")) {
+                        if ((arFile.get(i).toLowerCase().matches((tempSearchWord).toLowerCase()))||(arFile.get(i).toLowerCase().matches(("(.*)" + "(/)" + tempSearchWord).toLowerCase()))) {
+                            matchNo = matchNo +1;
+                            System.out.println("ZIP File Contains " + searchFile +
+                                    " at " + arFile.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            walk.file_found_flag = true;
+                        }
+
+
+                    }
+                    if (tempMatchAllKeywords.equals("MatchAny")) {
+                        if (arFile.get(i).toLowerCase().matches("(.*)".toLowerCase() + tempSearchWord.toLowerCase() + "(.*)".toLowerCase())) {
+                            matchNo = matchNo +1;
+                            System.out.println("ZIP File Contains " + searchFile +
+                                    " at " + arFile.get(i));
+                            if (matchNo == 1){
+                                reply = "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            else if (matchNo > 1) {
+                                reply = reply + " ; " + "ZIP File Contains " + searchFile +
+                                        " at " + arFile.get(i);
+                            }
+                            walk.file_found_flag = true;
+                        }
+                    }
+                }
+            }
+            if (matchNo == 0){
+                reply = "ZIP File does not contain " + searchFile;;
             }
         }
-        if (!walk.file_found_flag) {
-            System.out.println("ZIP File does not contain " + searchFile );
-        }
-
+        return "Success";
     }
 }

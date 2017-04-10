@@ -25,9 +25,12 @@ public class VirtualDisk {
     public static String tempDeleteVDisk =  "jar:file:/Users/Public/COMP3222/home.zip";
     public static String tempSearchWord = "testing.doc";
     public static String tempSearchFileFolder = "File";
-    public static String command = "Create";
+    public static String sourcePath ="C:\\Users\\Public\\COMP3222\\allweeks.png";
+    public static String destinationPath = "C:\\Users\\Public";
     public static String tempEntry = "a/";
+    public static String command = "Create";
 
+    public static int state = 0;    // 0 = initial, 1 = mounted to virtual disk
     /* Define ZIP File System Properies in HashMap */
     public static Map<String, String> attributes = new HashMap<>();
     public static Map<String, String> attributesFalse = new HashMap<>();
@@ -38,88 +41,101 @@ public class VirtualDisk {
         /* We want to read an existing ZIP File, so we set this to False */
         attributesFalse.put("create", "false");
     }
+    public static String getFieldData(String input, int searchNum,
+                                      String delimiter) {
+        try {
+            String[] list = input.split(delimiter);
+            return list[searchNum - 1];
+        } catch (Exception ex) {
 
-    public void read_command() throws IOException {
-        while(true){
-            System.out.println("Enter the command you want to execute: ");
-            command = keyRead.readLine();
-            System.out.println(command);
-
-            if (command.equals("Create")) {
-                (new Create()).ope();
-            }
-
-            if (command.equals("AddFile")) {
-                (new AddFile()).ope();
-            }
-
-            if (command.equals("DeleteFile")) {
-                (new DeleteFile()).ope();
-            }
-
-            if (command.equals("AddDir")) {
-                (new AddDir()).ope();
-            }
-
-            if (command.equals("DeleteDir")) {
-                (new DeleteDir()).ope();
-            }
-
-            if (command.equals("Delete")) {
-                (new Delete()).ope();
-            }
-
-            if (command.equals("List")) {
-                (new List()).ope();
-            }
-
-           if (command.equals("Search")) {
-                (new Searching()).ope();
-            }
-
-            if (command.equals("CheckSize")) {
-                (new CheckSize()).ope();
-            }
-
-            if (command.equals("CopyFile")) {
-                (new CopyFile()).ope();
-            }
-
-            if (command.equals("RenameFile")) {
-                (new RenameFile()).ope();
-            }
-
-            if (command.equals("MoveFile")) {
-                (new MoveFile()).ope();
-            }
-
-            if (command.equals("ImportFile")) {
-                (new ImportFile()).ope();
-            }
-
-            if (command.equals("ExportFile")) {
-                (new ExportFile()).ope();
-            }
-
-            if (command.equals("RenameDir")) {
-                (new RenameDir()).ope();
-            }
-
-            if (command.equals("CopyDir")) {
-                (new CopyDir()).ope();
-            }
-
-            if (command.equals("MoveDir")) {
-                (new MoveDir()).ope();
-            }
-
-            if (command.equals("ImportDir")) {
-                (new ImportDir()).ope();
-            }
-
-            if (command.equals("ExportDir")) {
-                (new ExportDir()).ope();
-            }
         }
+        return "Success";
+    }
+
+    public String strategy(String input) throws IOException {
+        command = getFieldData(input,1," ");
+        String tmp[] = input.split(" ");
+        String parameter="";
+        for(int i=1;i<tmp.length;i++){
+            parameter+=tmp[i]+" ";
+        }
+        parameter = parameter.trim();
+
+        if (command.equals("Create")) {
+            (new Create()).ope(parameter);
+        }
+
+        if (command.equals("AddFile")) {
+            (new AddFile()).ope(parameter);
+        }
+
+        if (command.equals("DeleteFile")) {
+            (new DeleteFile()).ope(parameter);
+        }
+
+        if (command.equals("AddDir")) {
+            (new AddDir()).ope(parameter);
+        }
+
+        if (command.equals("DeleteDir")) {
+            (new DeleteDir()).ope(parameter);
+        }
+
+        if (command.equals("DeleteVD")) {
+            (new DeleteVD()).ope(parameter);
+        }
+
+        if (command.equals("List")) {
+            (new List()).ope(parameter);
+        }
+
+        if (command.equals("Searching")) {
+            (new Searching()).ope(parameter);
+        }
+
+        if (command.equals("CheckSize")) {
+            (new CheckSize()).ope(parameter);
+        }
+
+        if (command.equals("CopyFile")) {
+            (new CopyFile()).ope(parameter);
+        }
+
+        if (command.equals("RenameFile")) {
+            (new RenameFile()).ope(parameter);
+        }
+
+        if (command.equals("MoveFile")) {
+            (new MoveFile()).ope(parameter);
+        }
+
+        if (command.equals("ImportFile")) {
+            (new ImportFile()).ope(parameter);
+        }
+
+        if (command.equals("ExportFile")) {
+            (new ExportFile()).ope(parameter);
+        }
+
+        if (command.equals("CopyDir")) {
+            (new CopyDir()).ope(parameter);
+        }
+
+        if (command.equals("RenameDir")) {
+            (new RenameDir()).ope(parameter);
+        }
+
+        if (command.equals("MoveDir")) {
+            (new MoveDir()).ope(parameter);
+        }
+
+        if (command.equals("ImportDir")) {
+            (new ImportDir()).ope(parameter);
+        }
+
+        if (command.equals("ExportDir")) {
+            (new ExportDir()).ope(parameter);
+        }
+    return "Success";
     }
 }

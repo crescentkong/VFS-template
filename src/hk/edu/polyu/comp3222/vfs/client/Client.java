@@ -1,34 +1,107 @@
 package hk.edu.polyu.comp3222.vfs.client;
 
-import java.io.*;
-import java.net.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.Arrays;
-import java.lang.*;
-import java.util.Scanner;
+import hk.edu.polyu.comp3222.vfs.core.VirtualDisk;
+import hk.edu.polyu.comp3222.vfs.core.command.*;
+import hk.edu.polyu.comp3222.vfs.server.Server;
 
-class Client {
-    public static void main(String argv[]) throws Exception {
-        String sentence,sentence1;
-        String modifiedSentence;
-        BufferedReader inFromUser = new BufferedReader( new InputStreamReader(System.in));
-        BufferedReader inFromUser1 = new BufferedReader( new InputStreamReader(System.in));
-        Socket clientSocket = new Socket("localhost", 4003);
-        DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-        DataOutputStream outToServer1 = new DataOutputStream(clientSocket.getOutputStream());
-        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        Console console = System.console();
-        String username = console.readLine("Enter your Username :");
-        char pswd[] = console.readPassword("Enter your Password :");
-        String upwd=new String(pswd);
-        outToServer.writeBytes(username + '\n');
-        outToServer1.writeBytes(upwd + '\n');
-        modifiedSentence = inFromServer.readLine();
-        System.out.println("FROM SERVER: " + modifiedSentence);
-        clientSocket.close();
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+/**
+ * Created by Fiona on 4/8/2017.
+ */
+public class Client {
+
+    private static Socket socket;
+
+    static final int port2000 = 2000;
+
+    public static void connectToServer() throws Exception{
+
+        Socket sock = new Socket("127.0.0.1", port2000);
+        // reading from keyboard (keyRead object)
+        BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
+        // sending to client (pwrite object)
+        OutputStream ostream = sock.getOutputStream();
+        PrintWriter pwrite = new PrintWriter(ostream, true);
+        // receiving from server ( receiveRead  object)
+        InputStream istream = sock.getInputStream();
+        BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
+
+        System.out.println("Start the chitchat, type and press Enter key");
+
+        //int flag = 1;
+        String receiveMessage, sendMessage;
+
+        //String replyinclass = CreateCommand.reply;
+        //System.out.println(replyinclass);
+        //System.out.println(replyinclass);
+        while(Server.login.equals("false")){
+            String receiveLoginMessage;
+            if((receiveLoginMessage = receiveRead.readLine()) != null) //receive from server
+            {
+                System.out.print("Message from server: ");
+                System.out.println(receiveLoginMessage); // displaying at DOS prompt
+                if (receiveLoginMessage.matches("(.*)" + ("Please Try Again Later") + "(.*)")){
+                    System.out.print("Please Restart the System Again");
+                    System.exit(0);
+                }
+            }
+
+            String loginMesssage = keyRead.readLine();
+
+            pwrite.println(loginMesssage);
+            pwrite.flush();
+        }
+
+
+        while(Server.login.equals(true)){
+            while(true)
+            {
+
+                //replyinclass = CommandLineInterface.reply;
+                //if (flag==1)
+                //{
+                System.out.print("Input Message sent to core: ");
+                sendMessage = keyRead.readLine();  // keyboard reading
+                //flag = flag + 1;
+                //}
+                //else
+                ///{
+                //replyinclass = CommandLineInterface.reply;
+                //sendMessage = replyinclass;
+                //}
+
+                if (sendMessage.equals("CloseSystem")) {
+                    System.out.print("System is Closed");
+                    System.exit(0);
+                }
+
+                pwrite.println(sendMessage);       // sending to server
+                pwrite.flush();                    // flush the data
+
+
+
+                if((receiveMessage = receiveRead.readLine()) != null) //receive from server
+                {
+                    System.out.print("Message from core: ");
+                    System.out.println(receiveMessage); // displaying at DOS prompt
+                }
+
+                // start command line interface
+                //cli.start(receiveMessage);
+                System.out.println("/////////this is the last sentence in main()");
+
+
+            }
+
+        }
     }
+
+    public static void main(String[] args) throws Exception {
+        while(true)
+            connectToServer();
+    }
+
 }

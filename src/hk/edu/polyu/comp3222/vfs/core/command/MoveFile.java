@@ -7,7 +7,10 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+@SuppressWarnings("ALL")
 public class MoveFile extends FileManager {
+
+    public static String reply;
 
     public MoveFile(){
         super();
@@ -15,18 +18,33 @@ public class MoveFile extends FileManager {
 
     @Override
     public void ope() throws IOException {
-        VirDiskPath = read_path();
+    }
+
+    public String ope(String parameter) throws IOException {
+        System.out.println("para:"+ parameter);
+        String a = getFieldData(parameter,1," ");
+        System.out.println("a:"+ a);
+        String b = getFieldData(parameter,2," ");
+        System.out.println("b:"+ b);
+        String c = getFieldData(parameter,3," ");
+        System.out.println("c:"+ c);
+        VirDiskPath = "jar:file:" + a;
+        tempDeleteFile = b;
+        tempAddNewFile = c;
+
         URI zipFile = URI.create(VirDiskPath);
 
         try (FileSystem zipFileSys = FileSystems.newFileSystem(zipFile, attributes);) {
-            System.out.println("Enter the path of the File to be moved: (e.g. reallweeks.png)");
-            tempDeleteFile = keyRead.readLine();
+            //System.out.println("Enter the path of the File to be moved: (e.g. reallweeks.png)");
+            //tempDeleteFile = keyRead.readLine();
             Path ZipFilePath = zipFileSys.getPath(tempDeleteFile);
-            System.out.println("Enter the new path of the File: (e.g. a/reallweeks.png)");
-            tempAddNewFile = keyRead.readLine();
+            //System.out.println("Enter the new path of the File: (e.g. a/reallweeks.png)");
+            //tempAddNewFile = keyRead.readLine();
             Path ZipFilePath1 = zipFileSys.getPath(tempAddNewFile);
             Files.copy(ZipFilePath, ZipFilePath1);
             Files.delete(ZipFilePath);
-        }
+            reply = tempDeleteFile + " Successfully Moved";
+        }return "Success";
     }
+
 }
